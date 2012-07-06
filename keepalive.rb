@@ -6,7 +6,7 @@ include Clockwork
 
 if ENV['INTERVAL']
   interval = ENV['INTERVAL'].to_i
-  abort "INTERVAL must be value in seconds greater than 0"
+  abort "INTERVAL must be value in seconds greater than 0" unless interval > 0
 else
   interval = 10
 end
