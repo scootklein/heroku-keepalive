@@ -16,8 +16,13 @@ abort "ENDPOINTS must be comma-separated list of http endpoints to query for kee
 every(interval, 'ping') {
   ENV['ENDPOINTS'].split(",").each do |endpoint|
     s = Time.now
-    HTTParty.get(endpoint)
-    duration = (Time.now - s).to_f * 1000
-    puts "Contacted #{endpoint} in #{duration.round}ms"
+    begin
+      HTTParty.get(endpoint)
+      duration = (Time.now - s).to_f * 1000
+      puts "Contacted #{endpoint} in #{duration.round}ms"
+    rescue Exception => e
+      puts "FAILED to contact #{endpoint} -- #{e.message}"
+      #puts e.backtrace.collect{|line| "    " + line}.join("\n")
+    end
   end
 }
