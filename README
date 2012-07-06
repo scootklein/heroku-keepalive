@@ -1,0 +1,5 @@
+# Quickstart
+
+1. `git clone git@github.com:scootklein/heroku-keepalive.git && cd heroku-keepalive`
+2. `heroku create --stack cedar`
+3. 
